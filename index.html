@@ -6,12 +6,7 @@
     <title>Portfoliobuilder India - Expert Stock Market Trading & Investment Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --primary-color: #2563eb;
             --secondary-color: #10b981;
@@ -20,727 +15,232 @@
             --text-color: #334155;
             --accent-color: #f59e0b;
         }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--text-color); overflow-x: hidden; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
         /* Navigation */
-        .navbar {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            background: rgba(30, 41, 59, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        }
+        .navbar { position: fixed; width: 100%; top: 0; z-index: 1000; background: rgba(30, 41, 59, 0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
+        .navbar .container { display: flex; justify-content: space-between; align-items: center; padding: 1rem 20px; }
+        .logo { display: flex; align-items: center; font-size: 1.5rem; font-weight: bold; color: #fff; gap: 10px; cursor: pointer; }
+        .logo i { color: var(--secondary-color); font-size: 2rem; }
+        .nav-menu { display: flex; list-style: none; gap: 2rem; }
+        .nav-menu a { color: #fff; text-decoration: none; font-weight: 500; transition: all 0.3s ease; position: relative; cursor: pointer; }
+        .nav-menu a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--secondary-color); transition: width 0.3s ease; }
+        .nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 4px; }
+        .hamburger span { width: 25px; height: 3px; background: #fff; }
 
-        .navbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 20px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #fff;
-            gap: 10px;
-        }
-
-        .logo i {
-            color: var(--secondary-color);
-            font-size: 2rem;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-menu a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--secondary-color);
-            transition: width 0.3s ease;
-        }
-
-        .nav-menu a:hover::after,
-        .nav-menu a.active::after {
-            width: 100%;
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 4px;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: #fff;
-        }
+        /* Page System */
+        .page { display: none; }
+        .page.active { display: block; }
 
         /* Hero Section */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-            overflow: hidden;
-            padding-top: 80px;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-        }
-
-        .hero-text {
-            max-width: 700px;
-            color: #fff;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero-text h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #fff 0%, #10b981 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-text h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--secondary-color);
-        }
-
-        .hero-text p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary {
-            background: var(--secondary-color);
-            color: #fff;
-            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
-        }
-
-        .btn-primary:hover {
-            background: #059669;
-            transform: translateY(-3px);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: #fff;
-            border: 2px solid #fff;
-        }
-
-        .btn-secondary:hover {
-            background: #fff;
-            color: var(--dark-color);
-        }
-
-        .floating-icon {
-            position: absolute;
-            font-size: 3rem;
-            color: var(--secondary-color);
-            opacity: 0.2;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-30px); }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Stats Section */
-        .stats {
-            padding: 4rem 0;
-            background: var(--light-color);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 2rem;
-            background: #fff;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-icon {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .stat-card h3 {
-            font-size: 3rem;
-            color: var(--secondary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        /* Services Section */
-        .services {
-            padding: 6rem 0;
-            background: #fff;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-size: 3rem;
-            color: var(--dark-color);
-            margin-bottom: 1rem;
-        }
-
-        .section-header p {
-            font-size: 1.2rem;
-            color: var(--text-color);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            position: relative;
-            padding: 2.5rem;
-            background: #fff;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s ease;
-            border: 2px solid transparent;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary-color);
-        }
-
-        .service-card.featured {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fff;
-        }
-
-        .featured-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--accent-color);
-            color: #fff;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .service-icon {
-            font-size: 3.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-        }
-
-        .service-card.featured .service-icon,
-        .service-card.featured h3,
-        .service-card.featured p {
-            color: #fff;
-        }
-
-        .service-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--dark-color);
-        }
-
-        .service-card p {
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .service-features {
-            list-style: none;
-        }
-
-        .service-features li {
-            padding: 0.5rem 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .service-features i {
-            color: var(--secondary-color);
-        }
-
-        /* Hedging Section */
-        .hedging-section {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fff;
-        }
-
-        .hedging-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hedging-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .lead {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .benefit {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            align-items: flex-start;
-        }
-
-        .benefit i {
-            font-size: 2rem;
-            color: var(--accent-color);
-            flex-shrink: 0;
-        }
-
-        .chart-container {
-            width: 300px;
-            height: 300px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto;
-        }
-
-        .chart-container i {
-            font-size: 8rem;
-            opacity: 0.5;
-        }
-
-        /* About Section */
-        .about {
-            padding: 6rem 0;
-            background: var(--light-color);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .image-placeholder {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            border-radius: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .image-placeholder i {
-            font-size: 8rem;
-            color: #fff;
-            opacity: 0.5;
-        }
-
-        .about-text h2 {
-            font-size: 2.5rem;
-            color: var(--dark-color);
-            margin-bottom: 1.5rem;
-        }
-
-        .about-features {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .feature {
-            text-align: center;
-        }
-
-        .feature i {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 6rem 0;
-            background: #fff;
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 3rem;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .info-card {
-            padding: 2rem;
-            background: var(--light-color);
-            border-radius: 15px;
-            border-left: 4px solid var(--primary-color);
-            transition: all 0.3s ease;
-        }
-
-        .info-card:hover {
-            transform: translateX(10px);
-        }
-
-        .info-icon {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .info-card a {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        .contact-form-container {
-            background: var(--light-color);
-            padding: 3rem;
-            border-radius: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-family: inherit;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-
-        .btn-block {
-            width: 100%;
-        }
-
-        .whatsapp-cta {
-            margin-top: 2rem;
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 2px solid #e2e8f0;
-        }
-
-        .btn-whatsapp {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            background: #25D366;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .btn-whatsapp:hover {
-            background: #20ba59;
-            transform: translateY(-3px);
-        }
+        .hero { position: relative; min-height: 100vh; display: flex; align-items: center; background: linear-gradient(135deg, #1e293b 0%, #334155 100%); overflow: hidden; padding-top: 80px; }
+        .hero-content { position: relative; z-index: 2; width: 100%; }
+        .hero-text { max-width: 700px; color: #fff; animation: fadeInUp 1s ease; }
+        .hero-text h1 { font-size: 4rem; margin-bottom: 1rem; background: linear-gradient(135deg, #fff 0%, #10b981 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-text h2 { font-size: 2rem; margin-bottom: 1rem; color: var(--secondary-color); }
+        .hero-text p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; }
+        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn { padding: 1rem 2rem; border: none; border-radius: 50px; font-size: 1rem; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.3s ease; }
+        .btn-primary { background: var(--secondary-color); color: #fff; box-shadow: 0 5px 15px rgba(16,185,129,0.3); }
+        .btn-primary:hover { background: #059669; transform: translateY(-3px); }
+        .btn-secondary { background: transparent; color: #fff; border: 2px solid #fff; }
+        .btn-secondary:hover { background: #fff; color: var(--dark-color); }
+        .floating-icon { position: absolute; font-size: 3rem; color: var(--secondary-color); opacity: 0.2; animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-30px); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Stats */
+        .stats { padding: 4rem 0; background: var(--light-color); }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .stat-card { text-align: center; padding: 2rem; background: #fff; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease; }
+        .stat-card:hover { transform: translateY(-10px); }
+        .stat-icon { font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem; }
+        .stat-card h3 { font-size: 3rem; color: var(--secondary-color); margin-bottom: 0.5rem; }
+
+        /* Services */
+        .services { padding: 6rem 0; background: #fff; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-header h2 { font-size: 3rem; color: var(--dark-color); margin-bottom: 1rem; }
+        .section-header p { font-size: 1.2rem; color: var(--text-color); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        .service-card { position: relative; padding: 2.5rem; background: #fff; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.4s ease; border: 2px solid transparent; }
+        .service-card:hover { transform: translateY(-10px); border-color: var(--primary-color); }
+        .service-card.featured { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; }
+        .featured-badge { position: absolute; top: 20px; right: 20px; background: var(--accent-color); color: #fff; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600; }
+        .service-icon { font-size: 3.5rem; color: var(--primary-color); margin-bottom: 1.5rem; }
+        .service-card.featured .service-icon, .service-card.featured h3, .service-card.featured p { color: #fff; }
+        .service-card h3 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--dark-color); }
+        .service-card p { margin-bottom: 1.5rem; line-height: 1.8; }
+        .service-features { list-style: none; }
+        .service-features li { padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem; }
+        .service-features i { color: var(--secondary-color); }
+
+        /* Hedging */
+        .hedging-section { padding: 6rem 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; }
+        .hedging-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .hedging-text h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .lead { font-size: 1.3rem; margin-bottom: 1.5rem; }
+        .benefit { display: flex; gap: 1rem; margin-bottom: 2rem; align-items: flex-start; }
+        .benefit i { font-size: 2rem; color: var(--accent-color); flex-shrink: 0; }
+        .chart-container { width: 300px; height: 300px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto; }
+        .chart-container i { font-size: 8rem; opacity: 0.5; }
+
+        /* About */
+        .about { padding: 6rem 0; background: var(--light-color); }
+        .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .image-placeholder { width: 100%; height: 400px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border-radius: 20px; display: flex; justify-content: center; align-items: center; }
+        .image-placeholder i { font-size: 8rem; color: #fff; opacity: 0.5; }
+        .about-text h2 { font-size: 2.5rem; color: var(--dark-color); margin-bottom: 1.5rem; }
+        .about-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem; }
+        .feature { text-align: center; }
+        .feature i { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem; }
+
+        /* Contact */
+        .contact { padding: 6rem 0; background: #fff; }
+        .contact-content { display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; }
+        .contact-info { display: flex; flex-direction: column; gap: 2rem; }
+        .info-card { padding: 2rem; background: var(--light-color); border-radius: 15px; border-left: 4px solid var(--primary-color); transition: all 0.3s ease; }
+        .info-card:hover { transform: translateX(10px); }
+        .info-icon { font-size: 2rem; color: var(--primary-color); margin-bottom: 1rem; }
+        .info-card a { color: var(--primary-color); text-decoration: none; }
+        .contact-form-container { background: var(--light-color); padding: 3rem; border-radius: 20px; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 1rem; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 1rem; font-family: inherit; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color); }
+        .btn-block { width: 100%; }
+        .whatsapp-cta { margin-top: 2rem; text-align: center; padding-top: 2rem; border-top: 2px solid #e2e8f0; }
+        .btn-whatsapp { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: #25D366; color: #fff; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; }
+        .btn-whatsapp:hover { background: #20ba59; transform: translateY(-3px); }
+
+        /* ===================== ONLINE SERVICE PAGE ===================== */
+        .online-service-page { padding-top: 80px; min-height: 100vh; background: var(--light-color); }
+
+        /* Service Viewer Hero */
+        .os-hero { background: linear-gradient(135deg, #1e293b 0%, #2563eb 100%); color: #fff; padding: 3rem 0; text-align: center; }
+        .os-hero h1 { font-size: 2.8rem; margin-bottom: 0.5rem; }
+        .os-hero p { font-size: 1.1rem; opacity: 0.85; }
+
+        /* Service Tab Bar */
+        .os-tabs-wrap { background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.08); position: sticky; top: 70px; z-index: 500; }
+        .os-tabs { display: flex; overflow-x: auto; scrollbar-width: none; }
+        .os-tabs::-webkit-scrollbar { display: none; }
+        .os-tab { flex: 0 0 auto; padding: 1rem 1.5rem; border: none; background: transparent; font-size: 0.95rem; font-weight: 600; color: var(--text-color); cursor: pointer; transition: all 0.3s ease; border-bottom: 3px solid transparent; display: flex; align-items: center; gap: 0.5rem; white-space: nowrap; }
+        .os-tab:hover { color: var(--primary-color); background: #f0f4ff; }
+        .os-tab.active { color: var(--primary-color); border-bottom-color: var(--primary-color); background: #f0f4ff; }
+        .os-tab i { font-size: 1rem; }
+
+        /* Service Viewer Area */
+        .os-viewer { position: relative; background: #fff; }
+        .os-viewer-header { display: flex; align-items: center; justify-content: space-between; padding: 0.8rem 1.5rem; background: var(--dark-color); color: #fff; }
+        .os-viewer-title { font-weight: 600; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .os-viewer-title i { color: var(--secondary-color); }
+        .os-viewer-actions { display: flex; gap: 0.5rem; }
+        .os-action-btn { padding: 0.4rem 1rem; border: none; border-radius: 20px; font-size: 0.85rem; cursor: pointer; font-weight: 600; transition: all 0.3s ease; }
+        .os-action-btn.close-btn { background: #ef4444; color: #fff; }
+        .os-action-btn.close-btn:hover { background: #dc2626; }
+        .os-action-btn.refresh-btn { background: var(--secondary-color); color: #fff; }
+        .os-action-btn.refresh-btn:hover { background: #059669; }
+
+        /* Iframe Container */
+        .os-iframe-wrap { position: relative; width: 100%; height: calc(100vh - 200px); min-height: 500px; }
+        .os-iframe-wrap iframe { width: 100%; height: 100%; border: none; }
+        .os-loading { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #fff; z-index: 10; }
+        .os-loading i { font-size: 3rem; color: var(--primary-color); animation: spin 1s linear infinite; margin-bottom: 1rem; }
+        .os-loading p { color: var(--text-color); font-size: 1rem; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Custom HTML Content Area */
+        .os-html-content { padding: 2rem; min-height: 500px; }
+
+        /* Service Landing Cards (shown before a service is selected) */
+        .os-landing { padding: 3rem 0; }
+        .os-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .os-card { background: #fff; border-radius: 16px; padding: 2rem; text-align: center; box-shadow: 0 8px 25px rgba(0,0,0,0.08); cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent; }
+        .os-card:hover { transform: translateY(-8px); border-color: var(--primary-color); box-shadow: 0 15px 40px rgba(37,99,235,0.15); }
+        .os-card-icon { width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.8rem; }
+        .os-card h3 { font-size: 1.1rem; color: var(--dark-color); margin-bottom: 0.5rem; }
+        .os-card p { font-size: 0.88rem; color: #64748b; line-height: 1.5; }
+        .os-card .launch-btn { margin-top: 1rem; padding: 0.6rem 1.5rem; background: var(--primary-color); color: #fff; border: none; border-radius: 25px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.4rem; }
+        .os-card .launch-btn:hover { background: #1d4ed8; transform: scale(1.05); }
+
+        /* YouTube Section */
+        .yt-section { padding: 4rem 0; background: #fff; border-top: 1px solid #e2e8f0; }
+        .yt-section .section-header { margin-bottom: 2rem; }
+        .yt-wrapper { max-width: 900px; margin: 0 auto; }
+        .yt-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 16px; box-shadow: 0 15px 50px rgba(0,0,0,0.15); }
+        .yt-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 16px; }
+        .yt-placeholder { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 16px; background: linear-gradient(135deg, #1e293b, #334155); display: flex; }
+        .yt-placeholder-inner { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; }
+        .yt-placeholder-inner i { font-size: 5rem; color: #ff0000; margin-bottom: 1rem; opacity: 0.8; }
+        .yt-placeholder-inner p { font-size: 1.1rem; opacity: 0.7; }
+        .yt-meta { text-align: center; margin-top: 1.5rem; }
+        .yt-meta h3 { font-size: 1.3rem; color: var(--dark-color); margin-bottom: 0.3rem; }
+        .yt-meta p { color: #64748b; font-size: 0.95rem; }
 
         /* Footer */
-        .footer {
-            background: var(--dark-color);
-            color: #fff;
-            padding: 4rem 0 2rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-col h3 {
-            margin-bottom: 1.5rem;
-            color: var(--secondary-color);
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-col a {
-            color: #fff;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: all 0.3s ease;
-        }
-
-        .footer-col a:hover {
-            opacity: 1;
-            color: var(--secondary-color);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-        }
-
-        .contact-list li {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .disclaimer {
-            font-size: 0.9rem;
-            font-style: italic;
-            opacity: 0.7;
-        }
+        .footer { background: var(--dark-color); color: #fff; padding: 4rem 0 2rem; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem; }
+        .footer-col h3 { margin-bottom: 1.5rem; color: var(--secondary-color); }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.8rem; }
+        .footer-col a { color: #fff; text-decoration: none; opacity: 0.8; transition: all 0.3s ease; cursor: pointer; }
+        .footer-col a:hover { opacity: 1; color: var(--secondary-color); }
+        .social-links { display: flex; gap: 1rem; margin-top: 1rem; }
+        .social-links a { width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; background: rgba(255,255,255,0.1); border-radius: 50%; }
+        .contact-list li { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); }
+        .disclaimer { font-size: 0.9rem; font-style: italic; opacity: 0.7; }
 
         /* WhatsApp Float */
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 30px;
-            right: 30px;
-            background: #25D366;
-            color: #fff;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
-            z-index: 999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: bounce 2s infinite;
-        }
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px; background: #25D366; color: #fff; border-radius: 50%; text-align: center; font-size: 30px; box-shadow: 0 5px 20px rgba(37,211,102,0.5); z-index: 999; display: flex; justify-content: center; align-items: center; animation: bounce 2s infinite; text-decoration: none; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* Scroll to Top */
-        .scroll-top {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--primary-color);
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            font-size: 20px;
-            cursor: pointer;
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 998;
-        }
-
-        .scroll-top.active {
-            opacity: 1;
-        }
+        /* Scroll Top */
+        .scroll-top { position: fixed; bottom: 100px; right: 30px; width: 50px; height: 50px; background: var(--primary-color); color: #fff; border: none; border-radius: 50%; font-size: 20px; cursor: pointer; opacity: 0; transition: all 0.3s ease; z-index: 998; }
+        .scroll-top.active { opacity: 1; }
 
         /* Responsive */
         @media (max-width: 968px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-menu {
-                position: fixed;
-                left: -100%;
-                top: 70px;
-                flex-direction: column;
-                background: var(--dark-color);
-                width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                padding: 2rem 0;
-            }
-
-            .nav-menu.active {
-                left: 0;
-            }
-
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hedging-content,
-            .about-content,
-            .contact-content {
-                grid-template-columns: 1fr;
-            }
-
-            .about-features {
-                grid-template-columns: 1fr;
-            }
+            .hamburger { display: flex; }
+            .nav-menu { position: fixed; left: -100%; top: 70px; flex-direction: column; background: var(--dark-color); width: 100%; text-align: center; transition: 0.3s; padding: 2rem 0; }
+            .nav-menu.active { left: 0; }
+            .hero-text h1 { font-size: 2.5rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .hedging-content, .about-content, .contact-content { grid-template-columns: 1fr; }
+            .about-features { grid-template-columns: 1fr; }
+            .os-iframe-wrap { height: 60vh; }
+            .os-cards-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">
-                <i class="fas fa-chart-line"></i>
-                <span>Portfoliobuilder India</span>
-            </div>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="container">
+        <div class="logo" onclick="showPage('home')">
+            <i class="fas fa-chart-line"></i>
+            <span>Portfoliobuilder India</span>
+        </div>
+        <ul class="nav-menu" id="navMenu">
+            <li><a onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
+            <li><a onclick="showPage('home'); scrollToSection('services')" id="nav-services">Services</a></li>
+            <li><a onclick="showPage('home'); scrollToSection('about')" id="nav-about">About</a></li>
+            <li><a onclick="showPage('online')" id="nav-online">Online Service</a></li>
+            <li><a onclick="showPage('home'); scrollToSection('contact')" id="nav-contact">Contact</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+</nav>
+
+<!-- ==================== HOME PAGE ==================== -->
+<div id="page-home" class="page active">
+
+    <!-- Hero -->
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="container">
@@ -749,49 +249,33 @@
                     <h2>Smart Trading & Investment Solutions</h2>
                     <p>Expert guidance in Stock Market Trading, Mutual Funds, ETFs, and Derivatives</p>
                     <div class="hero-buttons">
-                        <a href="#services" class="btn btn-primary">Explore Services</a>
-                        <a href="#contact" class="btn btn-secondary">Get Started</a>
+                        <a onclick="showPage('home'); scrollToSection('services')" class="btn btn-primary" style="cursor:pointer;">Explore Services</a>
+                        <a onclick="showPage('home'); scrollToSection('contact')" class="btn btn-secondary" style="cursor:pointer;">Get Started</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none;">
-            <div class="floating-icon" style="top: 20%; left: 10%;"><i class="fas fa-chart-line"></i></div>
-            <div class="floating-icon" style="top: 60%; left: 15%;"><i class="fas fa-coins"></i></div>
-            <div class="floating-icon" style="top: 30%; right: 10%;"><i class="fas fa-chart-bar"></i></div>
-            <div class="floating-icon" style="top: 70%; right: 15%;"><i class="fas fa-dollar-sign"></i></div>
+        <div style="position:absolute;width:100%;height:100%;top:0;left:0;pointer-events:none;">
+            <div class="floating-icon" style="top:20%;left:10%;"><i class="fas fa-chart-line"></i></div>
+            <div class="floating-icon" style="top:60%;left:15%;"><i class="fas fa-coins"></i></div>
+            <div class="floating-icon" style="top:30%;right:10%;"><i class="fas fa-chart-bar"></i></div>
+            <div class="floating-icon" style="top:70%;right:15%;"><i class="fas fa-dollar-sign"></i></div>
         </div>
     </section>
 
-    <!-- Stats Section -->
+    <!-- Stats -->
     <section class="stats">
         <div class="container">
             <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-users"></i></div>
-                    <h3>500+</h3>
-                    <p>Happy Clients</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-briefcase"></i></div>
-                    <h3>1000+</h3>
-                    <p>Portfolios Managed</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-trophy"></i></div>
-                    <h3>95%</h3>
-                    <p>Success Rate</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-clock"></i></div>
-                    <h3>24/7</h3>
-                    <p>Support</p>
-                </div>
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-users"></i></div><h3>500+</h3><p>Happy Clients</p></div>
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-briefcase"></i></div><h3>1000+</h3><p>Portfolios Managed</p></div>
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-trophy"></i></div><h3>95%</h3><p>Success Rate</p></div>
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-clock"></i></div><h3>24/7</h3><p>Support</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Services -->
     <section id="services" class="services">
         <div class="container">
             <div class="section-header">
@@ -809,7 +293,6 @@
                         <li><i class="fas fa-check"></i> Tax Saving Funds</li>
                     </ul>
                 </div>
-
                 <div class="service-card featured">
                     <div class="featured-badge">Popular</div>
                     <div class="service-icon"><i class="fas fa-exchange-alt"></i></div>
@@ -821,7 +304,6 @@
                         <li><i class="fas fa-check"></i> Sectoral ETFs</li>
                     </ul>
                 </div>
-
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-building"></i></div>
                     <h3>Equity Stocks</h3>
@@ -832,7 +314,6 @@
                         <li><i class="fas fa-check"></i> Growth Stocks</li>
                     </ul>
                 </div>
-
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-random"></i></div>
                     <h3>Derivatives Trading</h3>
@@ -843,7 +324,6 @@
                         <li><i class="fas fa-check"></i> Hedging Strategies</li>
                     </ul>
                 </div>
-
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-seedling"></i></div>
                     <h3>Commodities</h3>
@@ -854,7 +334,6 @@
                         <li><i class="fas fa-check"></i> Agricultural Products</li>
                     </ul>
                 </div>
-
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
                     <h3>Fund Hedging</h3>
@@ -869,7 +348,7 @@
         </div>
     </section>
 
-    <!-- Hedging Section -->
+    <!-- Hedging -->
     <section class="hedging-section">
         <div class="container">
             <div class="hedging-content">
@@ -878,71 +357,40 @@
                     <p class="lead">Maximize Your Gains While Minimizing Risk</p>
                     <p>Our proprietary hedging strategies help you navigate market volatility with confidence. We implement sophisticated risk management techniques to protect your capital while maintaining growth potential.</p>
                     <div class="hedging-benefits">
-                        <div class="benefit">
-                            <i class="fas fa-check-circle"></i>
-                            <div>
-                                <h4>Predefined Risk Parameters</h4>
-                                <p>Know your maximum risk before entering any position</p>
-                            </div>
-                        </div>
-                        <div class="benefit">
-                            <i class="fas fa-check-circle"></i>
-                            <div>
-                                <h4>Market-Neutral Strategies</h4>
-                                <p>Profit in both bullish and bearish market conditions</p>
-                            </div>
-                        </div>
-                        <div class="benefit">
-                            <i class="fas fa-check-circle"></i>
-                            <div>
-                                <h4>Portfolio Insurance</h4>
-                                <p>Protect your investments from market downturns</p>
-                            </div>
-                        </div>
+                        <div class="benefit"><i class="fas fa-check-circle"></i><div><h4>Predefined Risk Parameters</h4><p>Know your maximum risk before entering any position</p></div></div>
+                        <div class="benefit"><i class="fas fa-check-circle"></i><div><h4>Market-Neutral Strategies</h4><p>Profit in both bullish and bearish market conditions</p></div></div>
+                        <div class="benefit"><i class="fas fa-check-circle"></i><div><h4>Portfolio Insurance</h4><p>Protect your investments from market downturns</p></div></div>
                     </div>
                 </div>
                 <div class="hedging-graphic">
-                    <div class="chart-container">
-                        <i class="fas fa-chart-area"></i>
-                    </div>
+                    <div class="chart-container"><i class="fas fa-chart-area"></i></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About -->
     <section id="about" class="about">
         <div class="container">
             <div class="about-content">
                 <div class="about-image">
-                    <div class="image-placeholder">
-                        <i class="fas fa-handshake"></i>
-                    </div>
+                    <div class="image-placeholder"><i class="fas fa-handshake"></i></div>
                 </div>
                 <div class="about-text">
                     <h2>About Portfoliobuilder India</h2>
                     <p>We are a leading investment advisory firm based in Guwahati, Assam, dedicated to helping individuals and institutions achieve their financial goals through strategic market investments.</p>
                     <p>With years of experience in the Indian stock market, we provide personalized investment solutions, expert guidance, and comprehensive portfolio management services.</p>
                     <div class="about-features">
-                        <div class="feature">
-                            <i class="fas fa-certificate"></i>
-                            <h4>Portfolio Guide</h4>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-user-shield"></i>
-                            <h4>Expert Advisors</h4>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-headset"></i>
-                            <h4>24/7 Support</h4>
-                        </div>
+                        <div class="feature"><i class="fas fa-certificate"></i><h4>Portfolio Guide</h4></div>
+                        <div class="feature"><i class="fas fa-user-shield"></i><h4>Expert Advisors</h4></div>
+                        <div class="feature"><i class="fas fa-headset"></i><h4>24/7 Support</h4></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact -->
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-header">
@@ -951,38 +399,16 @@
             </div>
             <div class="contact-content">
                 <div class="contact-info">
-                    <div class="info-card">
-                        <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-                        <h3>Visit Us</h3>
-                        <p>Betkuchi, Guwahati,<br>Assam - 781035</p>
-                    </div>
-                    <div class="info-card">
-                        <div class="info-icon"><i class="fas fa-phone"></i></div>
-                        <h3>Call Us</h3>
-                        <p><a href="tel:+918721078525">+91 8721078525</a></p>
-                    </div>
-                    <div class="info-card">
-                        <div class="info-icon"><i class="fab fa-whatsapp"></i></div>
-                        <h3>WhatsApp</h3>
-                        <p><a href="https://wa.me/918721078525" target="_blank">Chat with us</a></p>
-                    </div>
-                    <div class="info-card">
-                        <div class="info-icon"><i class="fas fa-clock"></i></div>
-                        <h3>Business Hours</h3>
-                        <p>Mon - Sat: 9:00 AM - 6:00 PM<br>Sunday: Closed</p>
-                    </div>
+                    <div class="info-card"><div class="info-icon"><i class="fas fa-map-marker-alt"></i></div><h3>Visit Us</h3><p>Betkuchi, Guwahati,<br>Assam - 781035</p></div>
+                    <div class="info-card"><div class="info-icon"><i class="fas fa-phone"></i></div><h3>Call Us</h3><p><a href="tel:+918721078525">+91 8721078525</a></p></div>
+                    <div class="info-card"><div class="info-icon"><i class="fab fa-whatsapp"></i></div><h3>WhatsApp</h3><p><a href="https://wa.me/918721078525" target="_blank">Chat with us</a></p></div>
+                    <div class="info-card"><div class="info-icon"><i class="fas fa-clock"></i></div><h3>Business Hours</h3><p>Mon - Sat: 9:00 AM - 6:00 PM<br>Sunday: Closed</p></div>
                 </div>
                 <div class="contact-form-container">
                     <form class="contact-form" id="contactForm">
-                        <div class="form-group">
-                            <input type="text" name="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" name="phone" placeholder="Your Phone" required>
-                        </div>
+                        <div class="form-group"><input type="text" name="name" placeholder="Your Name" required></div>
+                        <div class="form-group"><input type="email" name="email" placeholder="Your Email" required></div>
+                        <div class="form-group"><input type="tel" name="phone" placeholder="Your Phone" required></div>
                         <div class="form-group">
                             <select name="service" required>
                                 <option value="">Select Service</option>
@@ -994,9 +420,7 @@
                                 <option value="hedging">Fund Hedging</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-                        </div>
+                        <div class="form-group"><textarea name="message" rows="5" placeholder="Your Message" required></textarea></div>
                         <button type="submit" class="btn btn-primary btn-block">Send Message</button>
                     </form>
                     <div class="whatsapp-cta">
@@ -1010,132 +434,456 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-col">
-                    <h3>Portfoliobuilder India</h3>
-                    <p>Your trusted partner in wealth creation through smart investments and strategic market trading.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Services</h3>
-                    <ul>
-                        <li><a href="#services">Mutual Funds</a></li>
-                        <li><a href="#services">ETFs</a></li>
-                        <li><a href="#services">Equity Stocks</a></li>
-                        <li><a href="#services">Derivatives</a></li>
-                        <li><a href="#services">Commodities</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Contact Info</h3>
-                    <ul class="contact-list">
-                        <li><i class="fas fa-map-marker-alt"></i> Betkuchi, Guwahati, Assam - 781035</li>
-                        <li><i class="fas fa-phone"></i> +91 8721078525</li>
-                        <li><i class="fab fa-whatsapp"></i> WhatsApp Available</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Portfoliobuilder India. All rights reserved.</p>
-                <p class="disclaimer">Investment in securities market is subject to market risks. Read all related documents carefully before investing.</p>
+</div><!-- end page-home -->
+
+
+<!-- ==================== ONLINE SERVICE PAGE ==================== -->
+<div id="page-online" class="page">
+    <div class="online-service-page">
+
+        <!-- Hero Banner -->
+        <div class="os-hero">
+            <div class="container">
+                <h1><i class="fas fa-laptop-code" style="color:var(--secondary-color);margin-right:0.5rem;"></i>Online Services</h1>
+                <p>Access all our digital tools and platforms in one place — without leaving our website</p>
             </div>
         </div>
-    </footer>
 
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/918721078525?text=Hello%20Portfoliobuilder%20India,%20I%20am%20interested%20in%20your%20services." class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+        <!-- Tab Bar -->
+        <div class="os-tabs-wrap">
+            <div class="container">
+                <div class="os-tabs" id="osTabs">
+                    <!-- Tabs generated by JS -->
+                </div>
+            </div>
+        </div>
 
-    <!-- Scroll to Top Button -->
-    <button class="scroll-top" id="scrollTop">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+        <!-- Viewer / Landing Area -->
+        <div id="osViewerArea">
+            <!-- Landing cards shown initially -->
+            <div class="os-landing" id="osLanding">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Choose a Service</h2>
+                        <p>Click any service below to launch it instantly inside our website</p>
+                    </div>
+                    <div class="os-cards-grid" id="osCardsGrid">
+                        <!-- Cards generated by JS -->
+                    </div>
+                </div>
+            </div>
 
-    <script>
-        // Mobile Menu
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
+            <!-- Service Viewer (iframe / html) - hidden until service selected -->
+            <div id="osViewer" style="display:none;">
+                <div class="os-viewer-header">
+                    <div class="os-viewer-title">
+                        <i class="fas fa-circle" id="osViewerDot" style="font-size:0.6rem;"></i>
+                        <span id="osViewerTitle">Service</span>
+                    </div>
+                    <div class="os-viewer-actions">
+                        <button class="os-action-btn refresh-btn" onclick="refreshService()"><i class="fas fa-redo"></i> Refresh</button>
+                        <button class="os-action-btn close-btn" onclick="closeService()"><i class="fas fa-times"></i> Close</button>
+                    </div>
+                </div>
+                <div class="os-iframe-wrap" id="osIframeWrap">
+                    <div class="os-loading" id="osLoading">
+                        <i class="fas fa-spinner"></i>
+                        <p>Loading service, please wait...</p>
+                    </div>
+                    <iframe id="osIframe" src="" allowfullscreen sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals" onload="hideLoading()"></iframe>
+                </div>
+                <!-- Custom HTML content area -->
+                <div id="osHtmlContent" class="os-html-content" style="display:none;"></div>
+            </div>
+        </div>
 
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
+        <!-- YouTube Video Section -->
+        <div class="yt-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2><i class="fab fa-youtube" style="color:#ff0000;margin-right:0.5rem;"></i>Featured Video</h2>
+                    <p>Watch our latest market insights and tutorials</p>
+                </div>
+                <div class="yt-wrapper">
+                    <div id="ytPlayerContainer">
+                        <!-- If youtubeVideoId is set, iframe shows; else placeholder shows -->
+                    </div>
+                    <div class="yt-meta" id="ytMeta"></div>
+                </div>
+            </div>
+        </div>
 
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
-        });
+    </div>
+</div><!-- end page-online -->
 
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 70,
-                        behavior: 'smooth'
-                    });
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Portfoliobuilder India</h3>
+                <p>Your trusted partner in wealth creation through smart investments and strategic market trading.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a onclick="showPage('home')">Home</a></li>
+                    <li><a onclick="showPage('home'); scrollToSection('services')">Services</a></li>
+                    <li><a onclick="showPage('home'); scrollToSection('about')">About Us</a></li>
+                    <li><a onclick="showPage('online')">Online Service</a></li>
+                    <li><a onclick="showPage('home'); scrollToSection('contact')">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Services</h3>
+                <ul>
+                    <li><a onclick="showPage('home'); scrollToSection('services')">Mutual Funds</a></li>
+                    <li><a onclick="showPage('home'); scrollToSection('services')">ETFs</a></li>
+                    <li><a onclick="showPage('home'); scrollToSection('services')">Equity Stocks</a></li>
+                    <li><a onclick="showPage('home'); scrollToSection('services')">Derivatives</a></li>
+                    <li><a onclick="showPage('home'); scrollToSection('services')">Commodities</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Info</h3>
+                <ul class="contact-list">
+                    <li><i class="fas fa-map-marker-alt"></i> Betkuchi, Guwahati, Assam - 781035</li>
+                    <li><i class="fas fa-phone"></i> +91 8721078525</li>
+                    <li><i class="fab fa-whatsapp"></i> WhatsApp Available</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Portfoliobuilder India. All rights reserved.</p>
+            <p class="disclaimer">Investment in securities market is subject to market risks. Read all related documents carefully before investing.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- WhatsApp Floating -->
+<a href="https://wa.me/918721078525?text=Hello%20Portfoliobuilder%20India,%20I%20am%20interested%20in%20your%20services." class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Scroll Top -->
+<button class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></button>
+
+
+<script>
+// ================================================================
+//  ADMIN CONFIG — EDIT THIS SECTION TO CONFIGURE SERVICES & VIDEO
+// ================================================================
+
+/*
+  HOW TO ADD/EDIT SERVICES:
+  - type: 'url'  → loads a webpage inside the site (URL is hidden from users)
+  - type: 'html' → renders custom HTML code directly inside the page
+  
+  For 'url' type:  set "content" to the full URL (e.g. "https://example.com")
+  For 'html' type: set "content" to any HTML string you want displayed
+
+  NOTE: Some websites block being loaded in iframes (e.g. Google, NSE).
+  In that case, use type:'html' and embed their widget code instead.
+*/
+
+const onlineServices = [
+    {
+        id: 'service1',
+        name: 'Stock Scanner',
+        icon: 'fas fa-chart-line',
+        iconBg: '#dbeafe',
+        iconColor: '#2563eb',
+        description: 'Live stock scanner by Portfoliobuilder.in',
+        type: 'url',                          // 'url' or 'html'
+        content: 'https://avi-k26.github.io/bullishstocks/'  // ← REPLACE with your URL
+    },
+    {
+        id: 'service2',
+        name: 'Strategy Builder AI',
+        icon: 'fas fa-briefcase',
+        iconBg: '#d1fae5',
+        iconColor: '#10b981',
+        description: 'Build Strategy with AI',
+        type: 'url',
+        content: 'https://avi-k26.github.io/AIStrategy/' // ← REPLACE with your URL
+    },
+    {
+        id: 'service3',
+        name: 'SIP Calculator',
+        icon: 'fas fa-calculator',
+        iconBg: '#fef3c7',
+        iconColor: '#f59e0b',
+        description: 'Calculate your SIP returns',
+        type: 'html',                         // Custom HTML example
+        content: `
+            <div style="max-width:600px;margin:0 auto;padding:2rem;">
+                <h2 style="color:#1e293b;margin-bottom:1.5rem;"><i class="fas fa-calculator" style="color:#f59e0b;"></i> SIP Calculator</h2>
+                <div style="background:#f8fafc;padding:2rem;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,0.08);">
+                    <div style="margin-bottom:1rem;">
+                        <label style="display:block;font-weight:600;margin-bottom:0.4rem;">Monthly Investment (₹)</label>
+                        <input id="sip_monthly" type="number" value="5000" style="width:100%;padding:0.8rem;border:2px solid #e2e8f0;border-radius:8px;font-size:1rem;">
+                    </div>
+                    <div style="margin-bottom:1rem;">
+                        <label style="display:block;font-weight:600;margin-bottom:0.4rem;">Expected Annual Return (%)</label>
+                        <input id="sip_rate" type="number" value="12" style="width:100%;padding:0.8rem;border:2px solid #e2e8f0;border-radius:8px;font-size:1rem;">
+                    </div>
+                    <div style="margin-bottom:1.5rem;">
+                        <label style="display:block;font-weight:600;margin-bottom:0.4rem;">Investment Period (Years)</label>
+                        <input id="sip_years" type="number" value="10" style="width:100%;padding:0.8rem;border:2px solid #e2e8f0;border-radius:8px;font-size:1rem;">
+                    </div>
+                    <button onclick="calcSIP()" style="width:100%;padding:1rem;background:#2563eb;color:#fff;border:none;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;">Calculate Returns</button>
+                    <div id="sip_result" style="margin-top:1.5rem;display:none;"></div>
+                </div>
+                <script>
+                function calcSIP(){
+                    var m=parseFloat(document.getElementById('sip_monthly').value);
+                    var r=parseFloat(document.getElementById('sip_rate').value)/100/12;
+                    var n=parseFloat(document.getElementById('sip_years').value)*12;
+                    var fv=m*((Math.pow(1+r,n)-1)/r)*(1+r);
+                    var invested=m*n;
+                    var gains=fv-invested;
+                    document.getElementById('sip_result').style.display='block';
+                    document.getElementById('sip_result').innerHTML='<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;text-align:center;">'
+                    +'<div style="background:#dbeafe;padding:1rem;border-radius:8px;"><div style="font-size:0.85rem;color:#64748b;">Invested</div><div style="font-size:1.3rem;font-weight:700;color:#2563eb;">₹'+Math.round(invested).toLocaleString('en-IN')+'</div></div>'
+                    +'<div style="background:#d1fae5;padding:1rem;border-radius:8px;"><div style="font-size:0.85rem;color:#64748b;">Gains</div><div style="font-size:1.3rem;font-weight:700;color:#10b981;">₹'+Math.round(gains).toLocaleString('en-IN')+'</div></div>'
+                    +'<div style="background:#fef3c7;padding:1rem;border-radius:8px;"><div style="font-size:0.85rem;color:#64748b;">Total Value</div><div style="font-size:1.3rem;font-weight:700;color:#f59e0b;">₹'+Math.round(fv).toLocaleString('en-IN')+'</div></div>'
+                    +'</div>';
                 }
-            });
+                <\/script>
+            </div>
+        `
+    },
+    {
+        id: 'service4',
+        name: 'Mutual Fund Manager',
+        icon: 'fas fa-file-alt',
+        iconBg: '#ede9fe',
+        iconColor: '#7c3aed',
+        description: 'Expert Mutual Fund Free analysis',
+        type: 'url',
+        content: 'https://avi-k26.github.io/mutualfund/' // ← REPLACE with your URL
+    },
+    {
+        id: 'service5',
+        name: 'Job Portal',
+        icon: 'fas fa-user-circle',
+        iconBg: '#fee2e2',
+        iconColor: '#ef4444',
+        description: 'Access our free Job Search',
+        type: 'url',
+        content: 'https://jobs.portfoliobuilder.in' // ← REPLACE with your URL
+    }
+];
+
+/*
+  YOUTUBE VIDEO CONFIGURATION:
+  - Set youtubeVideoId to your YouTube video ID (the part after "v=" in the URL)
+    e.g. for https://www.youtube.com/watch?v=dQw4w9WgXcQ → use 'dQw4w9WgXcQ'
+  - Set videoTitle and videoDescription for the caption below the video
+  - Set to empty string '' to hide the video and show placeholder
+*/
+const youtubeConfig = {
+    videoId: '',                         // ← PASTE YOUR YOUTUBE VIDEO ID HERE
+    videoTitle: 'Market Insights 2024',
+    videoDescription: 'Watch our latest analysis on Indian stock market trends and investment strategies.'
+};
+
+// ================================================================
+//  END OF ADMIN CONFIG — DO NOT EDIT BELOW UNLESS YOU KNOW JS
+// ================================================================
+
+let currentServiceIndex = null;
+
+// Build tabs and cards
+function buildOnlineServices() {
+    const tabsEl = document.getElementById('osTabs');
+    const cardsEl = document.getElementById('osCardsGrid');
+
+    // Overview tab
+    tabsEl.innerHTML = `<button class="os-tab active" id="tab-overview" onclick="showOverview()">
+        <i class="fas fa-th-large"></i> Overview
+    </button>`;
+
+    cardsEl.innerHTML = '';
+
+    onlineServices.forEach((svc, idx) => {
+        // Tab
+        const tab = document.createElement('button');
+        tab.className = 'os-tab';
+        tab.id = `tab-${svc.id}`;
+        tab.innerHTML = `<i class="${svc.icon}"></i> ${svc.name}`;
+        tab.onclick = () => launchService(idx);
+        tabsEl.appendChild(tab);
+
+        // Card
+        const card = document.createElement('div');
+        card.className = 'os-card';
+        card.innerHTML = `
+            <div class="os-card-icon" style="background:${svc.iconBg};">
+                <i class="${svc.icon}" style="color:${svc.iconColor};"></i>
+            </div>
+            <h3>${svc.name}</h3>
+            <p>${svc.description}</p>
+            <button class="launch-btn" onclick="launchService(${idx})">
+                <i class="fas fa-external-link-alt"></i> Launch
+            </button>
+        `;
+        cardsEl.appendChild(card);
+    });
+
+    // Build YouTube section
+    buildYoutube();
+}
+
+function buildYoutube() {
+    const container = document.getElementById('ytPlayerContainer');
+    const meta = document.getElementById('ytMeta');
+
+    if (youtubeConfig.videoId && youtubeConfig.videoId.trim() !== '') {
+        container.innerHTML = `
+            <div class="yt-container">
+                <iframe src="https://www.youtube.com/embed/${youtubeConfig.videoId}?rel=0&modestbranding=1"
+                    title="${youtubeConfig.videoTitle}"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>`;
+        meta.innerHTML = `
+            <h3>${youtubeConfig.videoTitle}</h3>
+            <p>${youtubeConfig.videoDescription}</p>`;
+    } else {
+        container.innerHTML = `
+            <div class="yt-placeholder">
+                <div class="yt-placeholder-inner">
+                    <i class="fab fa-youtube"></i>
+                    <p>Video will appear here once configured by admin</p>
+                </div>
+            </div>`;
+        meta.innerHTML = `<p style="color:#94a3b8;font-size:0.9rem;">Admin: Add your YouTube video ID in the youtubeConfig section</p>`;
+    }
+}
+
+function launchService(idx) {
+    currentServiceIndex = idx;
+    const svc = onlineServices[idx];
+
+    // Update tabs
+    document.querySelectorAll('.os-tab').forEach(t => t.classList.remove('active'));
+    const activeTab = document.getElementById(`tab-${svc.id}`);
+    if (activeTab) { activeTab.classList.add('active'); activeTab.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'}); }
+
+    // Hide landing, show viewer
+    document.getElementById('osLanding').style.display = 'none';
+    document.getElementById('osViewer').style.display = 'block';
+
+    // Set title
+    document.getElementById('osViewerTitle').textContent = svc.name;
+    document.getElementById('osViewerDot').style.color = svc.iconColor || '#10b981';
+
+    if (svc.type === 'url') {
+        document.getElementById('osIframeWrap').style.display = 'block';
+        document.getElementById('osHtmlContent').style.display = 'none';
+        document.getElementById('osLoading').style.display = 'flex';
+        document.getElementById('osIframe').src = svc.content;
+    } else if (svc.type === 'html') {
+        document.getElementById('osIframeWrap').style.display = 'none';
+        document.getElementById('osHtmlContent').style.display = 'block';
+        document.getElementById('osHtmlContent').innerHTML = svc.content;
+        // Execute scripts inside html content
+        document.getElementById('osHtmlContent').querySelectorAll('script').forEach(s => {
+            const ns = document.createElement('script');
+            ns.textContent = s.textContent;
+            document.body.appendChild(ns);
         });
+    }
 
-        // Scroll to Top
-        const scrollTopBtn = document.getElementById('scrollTop');
+    window.scrollTo({ top: 70, behavior: 'smooth' });
+}
 
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollTopBtn.classList.add('active');
-            } else {
-                scrollTopBtn.classList.remove('active');
-            }
-        });
+function showOverview() {
+    currentServiceIndex = null;
+    document.querySelectorAll('.os-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-overview').classList.add('active');
+    document.getElementById('osLanding').style.display = 'block';
+    document.getElementById('osViewer').style.display = 'none';
+    document.getElementById('osIframe').src = '';
+}
 
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
+function closeService() { showOverview(); }
 
-        // Form Submission to WhatsApp
-        const contactForm = document.getElementById('contactForm');
+function refreshService() {
+    if (currentServiceIndex === null) return;
+    const svc = onlineServices[currentServiceIndex];
+    if (svc.type === 'url') {
+        document.getElementById('osLoading').style.display = 'flex';
+        document.getElementById('osIframe').src = '';
+        setTimeout(() => { document.getElementById('osIframe').src = svc.content; }, 300);
+    }
+}
 
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const formData = new FormData(contactForm);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const phone = formData.get('phone');
-            const service = formData.get('service');
-            const message = formData.get('message');
-            
-            const whatsappMessage = `Hello Portfoliobuilder India,%0A%0A*New Inquiry*%0A%0AName: ${name}%0AEmail: ${email}%0APhone: ${phone}%0AService: ${service}%0AMessage: ${message}`;
-            
-            window.open(`https://wa.me/918721078525?text=${whatsappMessage}`, '_blank');
-            
-            alert('Thank you! Redirecting to WhatsApp...');
-            contactForm.reset();
-        });
-    </script>
+function hideLoading() {
+    document.getElementById('osLoading').style.display = 'none';
+}
+
+// ================================================================
+//  PAGE NAVIGATION
+// ================================================================
+function showPage(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + pageId).classList.add('active');
+
+    // Update nav active state
+    document.querySelectorAll('.nav-menu a').forEach(a => a.classList.remove('active'));
+    const navEl = document.getElementById('nav-' + pageId);
+    if (navEl) navEl.classList.add('active');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    navMenu.classList.remove('active');
+
+    if (pageId === 'online') buildOnlineServices();
+}
+
+function scrollToSection(id) {
+    setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });
+    }, 100);
+}
+
+// ================================================================
+//  EXISTING FUNCTIONALITY
+// ================================================================
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('navMenu');
+hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
+document.querySelectorAll('.nav-menu a').forEach(link => {
+    link.addEventListener('click', () => navMenu.classList.remove('active'));
+});
+
+// Scroll to top
+const scrollTopBtn = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => {
+    scrollTopBtn.classList.toggle('active', window.pageYOffset > 300);
+});
+scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// Contact form
+document.getElementById('contactForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    const msg = `Hello Portfoliobuilder India,%0A%0A*New Inquiry*%0A%0AName: ${fd.get('name')}%0AEmail: ${fd.get('email')}%0APhone: ${fd.get('phone')}%0AService: ${fd.get('service')}%0AMessage: ${fd.get('message')}`;
+    window.open(`https://wa.me/918721078525?text=${msg}`, '_blank');
+    alert('Thank you! Redirecting to WhatsApp...');
+    e.target.reset();
+});
+</script>
+
 </body>
 </html>
